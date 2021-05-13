@@ -1,8 +1,10 @@
 <?php 
-
-    function view($name,$title,$list){
+    //레이아웃 뷰
+    function view($name,$title,$book_list,$user_list){ 
+        // $name : php 경로명, $title : 제목, $book_list : DB에서 추출한 책 데이터, $user_list : DB에서 추출한 USER 데이터
         require("view/$name.view.php");
     }
+
     // DB 접속 객체 얻기 함수
     function connectDB(){
         $conn = mysqli_connect("localhost","root","325264","DBProject");
@@ -15,6 +17,7 @@
             return $conn;
         }
     }
+
     // 메인 페이지 도서 추출 함수
     function selectMainPageBook($conn){
         $sql = "SELECT b.`book_name`, b.`genre`, b.`author`, u.`user_name` FROM `book` b LEFT JOIN `user` u ON b.`user_id` = u.`user_id`";
@@ -26,16 +29,20 @@
          }
          return $list;
     }
-    // user_name 데이터로 user_id 추출 함수
-    function selectUserId($conn,$user_name){
-        $sql = "SELECT `user_id` FROM `user` WHERE `user_name`='$user_name'";
+
+    // USER 드랍다운에 들어갈 USER 데이터 추출 함수
+    function selectUser($conn){
+        $sql = "SELECT `user_name`,`user_id` FROM `user`";
         $result = mysqli_query($conn,$sql);
-        $row = mysqli_fetch_array($result);
-        $user_id = $row['user_id'];
-        return $user_id;
+        $list = "";
+
+        while($row = mysqli_fetch_array($result)){
+            $list = $list."<option value = {$row['user_id']} > {$row['user_name']} </option>";
+        }
+        return $list;
     }
 
-    // 책 정보 삽입 함수
+    // 책 추가 삽입 함수
     function insertBookInfo($conn,$book_name,$genre,$author,$user_id){
         $sql = "INSERT INTO `book`(`book_name`,`genre`,`author`,`user_id`) VALUES ('$book_name','$genre','$author',$user_id)";
         $result = mysqli_query($conn,$sql);

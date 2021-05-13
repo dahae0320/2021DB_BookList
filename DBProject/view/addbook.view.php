@@ -24,7 +24,9 @@
     <br/>
     <input type="radio" name="read" value="읽었어요">읽었어요</input>
     <input type="radio" name="wannaread" value="읽고싶어요">읽고싶어요</input>
-    <input type="hidden" name="user_name" value="Alice">
+    <?php 
+        echo '<input type="hidden" id="user_id" name="user_id" value='.$user_id.' />';
+    ?>
     <br/>
     <input type="submit" value="등록하기" />
 </form>

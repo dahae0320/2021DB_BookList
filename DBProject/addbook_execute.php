@@ -1,19 +1,17 @@
 <?php
-    require("functions.php");
+    require("functions.php"); // 함수 import
     $conn = connectDB(); //DB연결
 
+    //POST 방식으로 받은 데이터 변수에 저장하기
     $book_name = $_POST['book_name'];
     $author = $_POST['author'];
     $genre = $_POST['genre'];
-    $user_name = $_POST['user_name'];
+    $user_id = $_POST['user_id'];
 
-    //1. user id 알아오기
-    $user_id = selectUserId($conn,$user_name);
-
-    //2. 책 정보 삽입하기
+    //1. 책 정보 삽입하기
     $result = insertBookInfo($conn,$book_name,$genre,$author,$user_id);
 
-    //3. 에러 체크
+    //2. SQL 처리 체크
     if($result){
         echo '등록 완료'.'<script> window.close(); </script>'; 
     }else{
