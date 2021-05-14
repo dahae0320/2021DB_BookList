@@ -42,7 +42,7 @@
         return $list;
     }
 
-    // 책 추가 삽입 함수
+    // 책 등록 함수
     function insertBookInfo($conn,$book_name,$genre,$author,$user_id){
         $sql = "INSERT INTO `book`(`book_name`,`genre`,`author`,`user_id`) VALUES ('$book_name','$genre','$author',$user_id)";
         $result = mysqli_query($conn,$sql);

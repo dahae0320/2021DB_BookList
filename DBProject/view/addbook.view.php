@@ -22,8 +22,6 @@
         <option value="인문">인문</option>
     </select>
     <br/>
-    <input type="radio" name="read" value="읽었어요">읽었어요</input>
-    <input type="radio" name="wannaread" value="읽고싶어요">읽고싶어요</input>
     <?php 
         echo '<input type="hidden" id="user_id" name="user_id" value='.$user_id.' />';
     ?>
