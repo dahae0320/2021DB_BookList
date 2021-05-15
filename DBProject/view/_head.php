@@ -22,6 +22,7 @@
 </head>
 <body>
     <header>
+        <!-- Navigation Bar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">도서기록장</a>
@@ -29,6 +30,7 @@
                 <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                <!-- 메인 페이지, 내가 읽은 책 페이지, 일고 싶은 책 페이지 탭 -->
                 <ul class="navbar-nav nav-tabs">
                     <li class="nav-item" id="nav_page">
                     <a class="nav-link active" aria-current="page" href="../DBProject/index.php">메인 페이지</a>
@@ -40,7 +42,7 @@
                     <a class="nav-link" href="#">읽고 싶은 책</a>
                     </li>
                 </ul>
-
+                 <!-- User 드랍다운  -->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item" id="nav_user">
                         <select class="form-select" id="user" name="user">

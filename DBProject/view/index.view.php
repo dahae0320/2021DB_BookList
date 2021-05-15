@@ -7,33 +7,35 @@
 <main>
     <div class= "container mt-5">
         <div class="row">
+            <!-- 책 등록 버튼 -->
             <div class="col-lg-12 mb-4">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBook">+ New Book</button> 
             </div>
+            <!-- 책 카드 출력 구간 -->
             <?php
-                while($row = mysqli_fetch_array($books)){
+                while($row = mysqli_fetch_array($books)){ // DB에서 가지고 온 레코드들을 배열 형태로 변환 후, 한 레코드 씩 $row 변수에 저장하기
             ?>
             <div class="col-lg-4 mb-4">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title"><?= $row['book_name'] ?></h5> 
-                        <h6 class="card-subtitle mb-2 text-muted"><?= $row['author'] ?></h6>
-                        <p class="card-text"><?= $row['genre'] ?></p>
+                        <h5 class="card-title"><?= $row['book_name'] ?></h5> <!-- 책 제목 -->
+                        <h6 class="card-subtitle mb-2 text-muted"><?= $row['author'] ?></h6> <!-- 저자 -->
+                        <p class="card-text"><?= $row['genre'] ?></p> <!-- 장르 -->
                         <p>
-                            <button type="button" class="btn btn-secondary btn-sm">수정</button>
-                            <button type="button" class="btn btn-secondary btn-sm">삭제</button>
-                            <label class="card-text">&nbsp&nbsp'<?=$row['user_name']?>'님이 등록</label>
+                            <button type="button" class="btn btn-secondary btn-sm">수정</button> <!-- 수정버튼 -->
+                            <button type="button" class="btn btn-secondary btn-sm">삭제</button> <!-- 삭제버튼 -->
+                            <label class="card-text">&nbsp&nbsp'<?=$row['user_name']?>'님이 등록</label> <!-- 등록자 -->
                         </p>
-
                     </div>
                 </div>
             </div>
             <?php
-                }
+                } // while문 끝
             ?>
         </div>   
     </div>
-    <!-- 모달 영역 -->
+
+    <!-- 책 등록 모달 영역 -->
     <div class="modal" id ="addBook" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -41,17 +43,18 @@
                         <h5 class="modal-title">책 등록하기</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <!-- 책 등록 form 영역 -->
                     <form action="./addbook_execute.php" method="post">
-                        <div class="modal-body">                       
-                            <div class="mb-3">
-                                <label for="bookname" class="col-form-label">책 제목 :</label>
+                        <div class="modal-body"> <!-- modal body -->                    
+                            <div class="mb-3"> <!-- 책 제목 입력 -->
+                                <label for="bookname" class="col-form-label">책 제목 :</label> 
                                 <input type="text" class="form-control" id="book_name" name="book_name">
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3"> <!-- 저자 입력 -->
                                 <label for="author" class="col-form-label">저자 :</label>
                                 <input type="text" class="form-control" id="author" name="author">
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3"> <!-- 장르 입력 -->
                                 <label for="genre" class="col-form-label">장르 :</label>
                                 <select class="form-select" id="genre" name="genre">
                                     <option value="소설">소설</option>
@@ -59,10 +62,11 @@
                                     <option value="인문">인문</option>
                                 </select>
                             </div>
-                            <input type="hidden" id="user_id" name="user_id"/>
+                            <input type="hidden" id="user_id" name="user_id"/> <!-- 등록자 input -->
                             </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" onclick="setUserValue();" > 등록 </button>
+                        <div class="modal-footer">  <!-- modal footer --> 
+                            <!-- 등록 버튼 클릭 시, setUserValue() 함수 호출 -->
+                            <button type="submit" class="btn btn-primary" onclick="setUserValue();" > 등록 </button> 
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> 취소 </button>
                         </div>
                     </form>
@@ -70,19 +74,11 @@
         </div>
     </div>
 </main>
-
+<!-- 자바스크립트 영역 -->
 <script type="application/javascript">
-    var userId = document.getElementById('user').value; 
-
-    function isMine(user_id){
-        if(userId == user_id){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    function setUserValue(){
+    
+    function setUserValue(){ // 기능 : USER 드랍다운에 지정된 user의 Value를 등록자 input의 Value로 저장
+        var userId = document.getElementById('user').value; 
         document.getElementById('user_id').setAttribute( 'value', userId );
     }
 </script>

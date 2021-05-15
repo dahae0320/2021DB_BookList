@@ -1,7 +1,7 @@
 <?php 
     //레이아웃 뷰
     function view($name,$books,$user_list){ 
-        // $name : php 경로명, $title : 제목, $book_list : DB에서 추출한 책 데이터, $user_list : DB에서 추출한 USER 데이터
+        // $name : php 경로명, $book_list : DB에서 추출한 책 데이터, $user_list : DB에서 추출한 USER 데이터
         require("view/$name.view.php");
     }
 

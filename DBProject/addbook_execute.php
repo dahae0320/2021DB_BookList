@@ -11,7 +11,7 @@
     //1. 책 정보 삽입하기
     $result = insertBookInfo($conn,$book_name,$genre,$author,$user_id);
 
-    //2. SQL 처리 체크
+    //2. SQL 처리 에러 체크
     if($result){
         echo '<script> location.replace("index.php"); </script>'; 
     }else{
