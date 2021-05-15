@@ -20,6 +20,7 @@
         <option value="소설">소설</option>
         <option value="자기계발서">자기계발서</option>
         <option value="인문">인문</option>
+        <option value="전공서적">전공서적</option>
     </select>
     <br/>
     <?php 
