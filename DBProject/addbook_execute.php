@@ -13,8 +13,11 @@
 
     //2. SQL 처리 체크
     if($result){
-        echo '등록 완료'.'<script> window.close(); </script>'; 
+        echo '<script> location.replace("index.php"); </script>'; 
     }else{
         echo '등록 실패'.error_log(mysqli_error($conn));
     }
+
+    mysqli_close($conn); // DB 접속 종료
+
 ?>

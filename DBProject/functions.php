@@ -1,6 +1,6 @@
 <?php 
     //레이아웃 뷰
-    function view($name,$title,$book_list,$user_list){ 
+    function view($name,$books,$user_list){ 
         // $name : php 경로명, $title : 제목, $book_list : DB에서 추출한 책 데이터, $user_list : DB에서 추출한 USER 데이터
         require("view/$name.view.php");
     }
@@ -13,23 +13,17 @@
             echo 'DB에 연결하지 못 했습니다.'.mysqli_connect_error();
             return null;
         }else{
-            echo 'DB 접속에 성공했습니다.';
             return $conn;
         }
     }
 
     // 메인 페이지 도서 추출 함수
     function selectMainPageBook($conn){
-        $sql = "SELECT b.`book_name`, b.`genre`, b.`author`, u.`user_name` FROM `book` b LEFT JOIN `user` u ON b.`user_id` = u.`user_id`";
-        $result = mysqli_query($conn,$sql);
-        $list = "";
-        while($row = mysqli_fetch_array($result)){
-             //list는 .으로 연결된다. 
-            $list = $list."<li> 책이름 : {$row['book_name']} <br/> 장르 : {$row['genre']} <br/> 작가 : {$row['author']} <br/> 등록자 : {$row['user_name']} <br/><br/></li>";
-         }
-         return $list;
+        $sql = "SELECT b.`book_name`, b.`genre`, b.`author`, u.`user_name`, u.`user_id` FROM `book` b LEFT JOIN `user` u ON b.`user_id` = u.`user_id`";
+        $result = mysqli_query($conn,$sql); 
+        return $result;
     }
-// -- LEFT JOIN `user` u ON b.`user_id` = u.`user_id`
+
     // 읽은 책 페이지 도서 추출 함수
     function selectAlreadyReadPageBook($conn){
         $sql = "SELECT b.`book_name`, b.`genre`, b.`author`, u.`user_name`, br.`read_or_not`
