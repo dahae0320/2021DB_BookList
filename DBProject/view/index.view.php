@@ -18,14 +18,19 @@
             <div class="col-lg-4 mb-4">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title"><?= $row['book_name'] ?></h5> <!-- 책 제목 -->
-                        <h6 class="card-subtitle mb-2 text-muted"><?= $row['author'] ?></h6> <!-- 저자 -->
-                        <p class="card-text"><?= $row['genre'] ?></p> <!-- 장르 -->
-                        <p>
-                            <button type="button" class="btn btn-secondary btn-sm">수정</button> <!-- 수정버튼 -->
-                            <button type="button" class="btn btn-secondary btn-sm">삭제</button> <!-- 삭제버튼 -->
-                            <label class="card-text">&nbsp&nbsp'<?=$row['user_name']?>'님이 등록</label> <!-- 등록자 -->
-                        </p>
+                        <form action="deletebook_execute.php" method="get">
+                            <?php 
+                                echo '<input type="hidden" name="book_id" value='. $row['book_id'];
+                            ?>
+                            <h5 class="card-title" ><?= $row['book_name'] ?></h5> <!-- 책 제목 -->
+                            <h6 class="card-subtitle mb-2 text-muted"><?= $row['author'] ?></h6> <!-- 저자 -->
+                            <p class="card-text"><?= $row['genre'] ?></p> <!-- 장르 -->
+                            <p>
+                                <button type="button" class="btn btn-secondary btn-sm" >수정</button> <!-- 수정버튼 -->
+                                <button type="submit" class="btn btn-secondary btn-sm" >삭제</button> <!-- 삭제버튼 -->
+                                <label class="card-text">&nbsp&nbsp'<?=$row['user_name']?>'님이 등록</label> <!-- 등록자 -->
+                            </p>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -66,7 +71,7 @@
                             </div>
                         <div class="modal-footer">  <!-- modal footer --> 
                             <!-- 등록 버튼 클릭 시, setUserValue() 함수 호출 -->
-                            <button type="submit" class="btn btn-primary" onclick="setUserValue();" > 등록 </button> 
+                            <button type="submit" class="btn btn-primary" onclick="setUserValue()" > 등록 </button> 
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> 취소 </button>
                         </div>
                     </form>
@@ -81,6 +86,7 @@
         var userId = document.getElementById('user').value; 
         document.getElementById('user_id').setAttribute( 'value', userId );
     }
+
 </script>
 
 <?php
