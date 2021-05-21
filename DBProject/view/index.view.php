@@ -21,6 +21,7 @@
                         <h5 class="card-title"><?= $row['book_name'] ?></h5> <!-- 책 제목 -->
                         <h6 class="card-subtitle mb-2 text-muted"><?= $row['author'] ?></h6> <!-- 저자 -->
                         <p class="card-text"><?= $row['genre'] ?></p> <!-- 장르 -->
+                        <p id="book_id" name="book_id" style="display:none;"><?= $row['book_id'] ?></p> <!-- book_id -->
                         <p>
                             <button type="button" class="btn btn-secondary btn-sm">수정</button> <!-- 수정버튼 -->
                             <button type="button" class="btn btn-secondary btn-sm">삭제</button> <!-- 삭제버튼 -->
