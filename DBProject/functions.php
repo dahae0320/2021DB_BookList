@@ -7,7 +7,7 @@
 
     // DB 접속 객체 얻기 함수
     function connectDB(){
-        $conn = mysqli_connect("localhost","root","325264","DBProject");
+        $conn = mysqli_connect("127.0.0.1","root","123456789","DBProject");
         
         if(!$conn){
             echo 'DB에 연결하지 못 했습니다.'.mysqli_connect_error();
