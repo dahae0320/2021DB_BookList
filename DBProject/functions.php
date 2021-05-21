@@ -32,17 +32,18 @@
                     LEFT JOIN `user` u ON b.`user_id` = u.`user_id`";
 
         $result = mysqli_query($conn,$sql);
-        $list = "";
-        while($row = mysqli_fetch_array($result)){
-             //list는 .으로 연결된다. 
-            $list = $list."<li> 책이름 : {$row['book_name']} <br/> 
-                                장르 : {$row['genre']} <br/> 
-                                작가 : {$row['author']} <br/> 
-                                등록자 : {$row['user_name']} <br/>
-                                이미 읽었음 : {$row['read_or_not']}<br/>
-                            </li>";
-         }
-         return $list;
+        return $result;
+        // $list = "";
+        // while($row = mysqli_fetch_array($result)){
+        //      //list는 .으로 연결된다. 
+        //     $list = $list."<li> 책이름 : {$row['book_name']} <br/> 
+        //                         장르 : {$row['genre']} <br/> 
+        //                         작가 : {$row['author']} <br/> 
+        //                         등록자 : {$row['user_name']} <br/>
+        //                         이미 읽었음 : {$row['read_or_not']}<br/>
+        //                     </li>";
+        //  }
+        //  return $list;
     }
 
     // USER 드랍다운에 들어갈 USER 데이터 추출 함수
