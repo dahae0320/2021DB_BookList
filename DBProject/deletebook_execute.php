@@ -1,7 +1,7 @@
 <?php
     require("functions.php");
     $conn = connectDB();
-    $book_id = $_GET['book_id'];
+    $book_id = $_POST['book_id'];
     $result = deleteBook($conn,$book_id);
 
     if($result){

@@ -1,6 +1,7 @@
 
 <?php
     include_once('_head.php'); // 코드 중복 방지를 위한 include
+
 ?>
 
 <!-- index 메인 내용  -->
@@ -18,16 +19,26 @@
             <div class="col-lg-4 mb-4">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <form action="deletebook_execute.php" method="get">
+                        <form method="post">
                             <?php 
-                                echo '<input type="hidden" name="book_id" value='. $row['book_id'];
+                                echo '<input type="hidden" name="book_id" value='.$row['book_id'].' />';
+                                echo '<input type="hidden" name="book_name" value='.$row['book_name'].' />';
+                                echo '<input type="hidden" name="genre" value='.$row['genre'].' />';
+                                echo '<input type="hidden" name="author" value='.$row['author'].' />';
                             ?>
-                            <h5 class="card-title" ><?= $row['book_name'] ?></h5> <!-- 책 제목 -->
-                            <h6 class="card-subtitle mb-2 text-muted"><?= $row['author'] ?></h6> <!-- 저자 -->
-                            <p class="card-text"><?= $row['genre'] ?></p> <!-- 장르 -->
+                            <p>
+                                <h5 class="card-title" ><?= $row['book_name'] ?></h5> <!-- 책 제목 -->
+                                <select class="btn btn-mini">
+                                    <option></option>
+                                    <option data-image='redHeart.png'>읽고 싶어요</option>
+                                    <option data-image='blueHeart.png'>읽었어요 </option>
+                                </select>
+                            </p>
+                            <h6 class="card-subtitle mb-2 text-muted" ><?= $row['author'] ?></h6> <!-- 저자 -->
+                            <p class="card-text" ><?= $row['genre'] ?></p> <!-- 장르 -->
                             <p>
                                 <button type="button" class="btn btn-secondary btn-sm" >수정</button> <!-- 수정버튼 -->
-                                <button type="submit" class="btn btn-secondary btn-sm" >삭제</button> <!-- 삭제버튼 -->
+                                <button type="submit" class="btn btn-secondary btn-sm" formaction = "deletebook_execute.php">삭제</button> <!-- 삭제버튼 -->
                                 <label class="card-text">&nbsp&nbsp'<?=$row['user_name']?>'님이 등록</label> <!-- 등록자 -->
                             </p>
                         </form>
@@ -40,7 +51,7 @@
         </div>   
     </div>
 
-    <!-- 책 등록 모달 영역 -->
+    <!-- 책 등록 모달 include -->
     <div class="modal" id ="addBook" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -78,7 +89,6 @@
                 </div>
         </div>
     </div>
-</main>
 <!-- 자바스크립트 영역 -->
 <script type="application/javascript">
     

@@ -7,5 +7,4 @@
     $user_list = selectUser($conn); // DB에서 USER 드랍다운에 들어갈 USER 데이터 가지고 오기
 
     view('bookread',$title,$book_list,$user_list); // 레이아웃 호출
-    
 ?>
