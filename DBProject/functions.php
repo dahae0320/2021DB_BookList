@@ -7,7 +7,7 @@
 
     // DB 접속 객체 얻기 함수
     function connectDB(){
-        $conn = mysqli_connect("127.0.0.1","root","123456789","DBProject");
+        $conn = mysqli_connect("localhost","root","48088943aa","dbproject");
         
         if(!$conn){
             echo 'DB에 연결하지 못 했습니다.'.mysqli_connect_error();
@@ -24,26 +24,16 @@
         return $result;
     }
 
-    // 읽은 책 페이지 도서 추출 함수
-    function selectAlreadyReadPageBook($conn){
-        $sql = "SELECT b.`book_name`, b.`genre`, b.`author`, u.`user_name`, br.`read_or_not`, b.`book_id`
-                    FROM `book` b
-                    INNER JOIN `book_read` br ON br.`book_id` = b.`book_id` and br.`read_or_not` = 1
-                    LEFT JOIN `user` u ON b.`user_id` = u.`user_id`";
+    // 사용자가 읽고 싶어하는 도서 추출
+    function sel_WannaReadBook($conn) {
+        $sql = "SELECT book.book_name, book.genre, book.author, user.user_name, book_status.wanna 
+        FROM book 
+        INNER JOIN book_status ON book.book_id = book_status.book_id
+        AND book_status.wanna = 1 
+        LEFT JOIN user ON book.user_id = user.user_id";
 
-        $result = mysqli_query($conn,$sql);
+        $result = mysqli_query($conn, $sql);
         return $result;
-        // $list = "";
-        // while($row = mysqli_fetch_array($result)){
-        //      //list는 .으로 연결된다. 
-        //     $list = $list."<li> 책이름 : {$row['book_name']} <br/> 
-        //                         장르 : {$row['genre']} <br/> 
-        //                         작가 : {$row['author']} <br/> 
-        //                         등록자 : {$row['user_name']} <br/>
-        //                         이미 읽었음 : {$row['read_or_not']}<br/>
-        //                     </li>";
-        //  }
-        //  return $list;
     }
 
     // USER 드랍다운에 들어갈 USER 데이터 추출 함수
