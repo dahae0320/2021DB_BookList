@@ -10,6 +10,7 @@
             
             <!-- 책 카드 출력 구간 -->
             <?php
+                $i=0;
                 while($row = mysqli_fetch_array($books)){ // DB에서 가지고 온 레코드들을 배열 형태로 변환 후, 한 레코드 씩 $row 변수에 저장하기
             ?>
             <div class="col-lg-4 mb-4">
@@ -18,10 +19,10 @@
                         <h5 class="card-title"><?= $row['book_name'] ?></h5> <!-- 책 제목 -->
                         <h6 class="card-subtitle mb-2 text-muted"><?= $row['author'] ?></h6> <!-- 저자 -->
                         <p class="card-text"><?= $row['genre'] ?></p> <!-- 장르 -->
-                        <p class="card-text"><?= $row['read_or_not'] ?></p> <!-- 읽었음 -->
+                        <p class="card-text">읽었음!<?= $row['read_or_not'] ?></p> <!-- 읽었음 -->
                         <p id="bookId" name="bookId" ><?= $row['book_id'] ?></p> <!-- book_id -->
                         <p>
-                            <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#updateBook" onclick="getBookValue();">수정</button> <!-- 수정버튼 -->
+                            <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#updateBook" value="<?= $row['book_id'] ?>" onclick="getBookValue(this.value);">수정</button> <!-- 수정버튼 -->
                             <button type="button" class="btn btn-secondary btn-sm">삭제</button> <!-- 삭제버튼 -->
                             <label class="card-text">&nbsp&nbsp'<?=$row['user_name']?>'님이 등록</label> <!-- 등록자 -->
                         </p>
@@ -29,6 +30,7 @@
                 </div>
             </div>
             <?php
+                $i++;
                 } // while문 끝
             ?>
         </div>   
@@ -61,7 +63,7 @@
                                     <option value="인문">인문</option>
                                 </select>
                             </div>
-                            <input id="book_id" name="book_id"/> <!-- 책 등록 번호 input -->
+                            <input type="hidden" id="book_id" name="book_id"/> <!-- 책 등록 번호 input -->
                             </div>
                         <div class="modal-footer">  <!-- modal footer --> 
                             <!-- 등록 버튼 클릭 시, setUserValue() 함수 호출 -->
@@ -77,14 +79,15 @@
 <!-- 자바스크립트 영역 -->
 <script type="application/javascript">
     var bookId;
+    var num;
 
-    function getBookValue(){
-        bookId = document.querySelectorAll('bookId');
+    function getBookValue(value){
+        bookId = value;
         console.log(bookId);
     }
     
-    function setBookValue(){ // 기능 : bookId의 Value를 수정 부분의 책 등록 번호 input의 Value로 저장
-        document.getElementById('book_id').setAttribute( 'value', bookId );
+    function setBookValue(){ // 기능 : book_id의 value를 수정 부분의 책 등록 번호 input의 Value로 저장
+        document.getElementById('book_id').setAttribute('value', bookId);
     }
 </script>
 
