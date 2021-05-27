@@ -87,16 +87,16 @@
                     <form action="./updatebook_execute.php" method="post">
                         <div class="modal-body"> <!-- modal body -->                    
                             <div class="mb-3"> <!-- 책 제목 입력 -->
-                                <label for="bookname" class="col-form-label">책 제목 :</label> 
-                                <input type="text" class="form-control" id="book_name" name="book_name">
+                                <label for="booknameUp" class="col-form-label">책 제목 :</label> 
+                                <input type="text" class="form-control" id="booknameUp" name="book_name">
                             </div>
                             <div class="mb-3"> <!-- 저자 입력 -->
-                                <label for="author" class="col-form-label">저자 :</label>
-                                <input type="text" class="form-control" id="author" name="author">
+                                <label for="authorUp" class="col-form-label">저자 :</label>
+                                <input type="text" class="form-control" id="authorUp" name="author">
                             </div>
                             <div class="mb-3"> <!-- 장르 입력 -->
-                                <label for="genre" class="col-form-label">장르 :</label>
-                                <select class="form-select" id="genre" name="genre">
+                                <label for="genreUp" class="col-form-label">장르 :</label>
+                                <select class="form-select" id="genreUp" name="genre">
                                     <option value="소설">소설</option>
                                     <option value="자기계발서">자기계발서</option>
                                     <option value="인문">인문</option>
@@ -113,6 +113,7 @@
                 </div>
         </div>
     </div>
+    
 </main>
 <!-- 자바스크립트 영역 -->
 <script type="application/javascript">

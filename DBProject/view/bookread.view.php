@@ -18,8 +18,8 @@
                         <h5 class="card-title"><?= $row['book_name'] ?></h5> <!-- 책 제목 -->
                         <h6 class="card-subtitle mb-2 text-muted"><?= $row['author'] ?></h6> <!-- 저자 -->
                         <p class="card-text"><?= $row['genre'] ?></p> <!-- 장르 -->
-                        <p class="card-text">읽었음!<?= $row['read_or_not'] ?></p> <!-- 읽었음 -->
-                        <p id="bookId" name="bookId" ><?= $row['book_id'] ?></p> <!-- book_id -->
+                        <p class="card-text" style="display:none;">읽었음!<?= $row['read_or_not'] ?></p> <!-- 읽었음 -->
+                        <p id="bookId" name="bookId" style="display:none;"><?= $row['book_id'] ?></p> <!-- book_id -->
                         <p>
                             <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#updateBook" value="<?= $row['book_id'] ?>" onclick="getBookValue(this.value);">수정</button> <!-- 수정버튼 -->
                             <button type="button" class="btn btn-secondary btn-sm">삭제</button> <!-- 삭제버튼 -->
@@ -46,16 +46,16 @@
                     <form action="./updatebook_execute.php" method="post">
                         <div class="modal-body"> <!-- modal body -->                    
                             <div class="mb-3"> <!-- 책 제목 입력 -->
-                                <label for="bookname" class="col-form-label">책 제목 :</label> 
-                                <input type="text" class="form-control" id="book_name" name="book_name">
+                                <label for="booknameUp" class="col-form-label">책 제목 :</label> 
+                                <input type="text" class="form-control" id="booknameUp" name="book_name">
                             </div>
                             <div class="mb-3"> <!-- 저자 입력 -->
-                                <label for="author" class="col-form-label">저자 :</label>
-                                <input type="text" class="form-control" id="author" name="author">
+                                <label for="authorUp" class="col-form-label">저자 :</label>
+                                <input type="text" class="form-control" id="authorUp" name="author">
                             </div>
                             <div class="mb-3"> <!-- 장르 입력 -->
-                                <label for="genre" class="col-form-label">장르 :</label>
-                                <select class="form-select" id="genre" name="genre">
+                                <label for="genreUp" class="col-form-label">장르 :</label>
+                                <select class="form-select" id="genreUp" name="genre">
                                     <option value="소설">소설</option>
                                     <option value="자기계발서">자기계발서</option>
                                     <option value="인문">인문</option>

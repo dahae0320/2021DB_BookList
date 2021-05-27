@@ -3,9 +3,9 @@
     $conn = connectDB(); //DB연결
 
     //POST 방식으로 받은 데이터 변수에 저장하기
-    $book_name = $_POST['book_name'];
-    $author = $_POST['author'];
-    $genre = $_POST['genre'];
+    $book_name = $_POST['booknameUp'];
+    $author = $_POST['authorUp'];
+    $genre = $_POST['genreUp'];
     $book_id = $_POST['book_id'];
 
     //1. 수정된 책 정보 삽입하기
