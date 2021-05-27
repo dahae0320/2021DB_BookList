@@ -10,7 +10,6 @@
             
             <!-- 책 카드 출력 구간 -->
             <?php
-                $i=0;
                 while($row = mysqli_fetch_array($books)){ // DB에서 가지고 온 레코드들을 배열 형태로 변환 후, 한 레코드 씩 $row 변수에 저장하기
             ?>
             <div class="col-lg-4 mb-4">
@@ -30,7 +29,6 @@
                 </div>
             </div>
             <?php
-                $i++;
                 } // while문 끝
             ?>
         </div>   
@@ -79,7 +77,6 @@
 <!-- 자바스크립트 영역 -->
 <script type="application/javascript">
     var bookId;
-    var num;
 
     function getBookValue(value){
         bookId = value;
