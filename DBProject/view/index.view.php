@@ -81,13 +81,13 @@
     </div>
 <!-- 자바스크립트 영역 -->
 <script type="application/javascript">
-    
-    function setUserValue(){ // 기능 : USER 드랍다운에 지정된 user의 Value를 등록자 input의 Value로 저장
+    // 기능 : USER 드랍다운에 지정된 user의 Value를 등록자 input의 Value로 저장
+    function setUserValue(){ 
         var userId = document.getElementById('user').value; 
         document.getElementById('user_id').setAttribute( 'value', userId );
     }
-
-    function deleteBook(value){
+    // 기능 : 삭제 php 문서로 이동(GET 방식)
+    function deleteBook(value){ 
         location.replace("./deletebook_execute.php?value="+value);
     }
 

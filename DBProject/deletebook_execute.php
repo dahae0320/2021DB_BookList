@@ -1,7 +1,7 @@
 <?php
     require("functions.php");
     $conn = connectDB();
-    $book_id = $_GET['value'];
+    $book_id = $_GET['value']; // book_id 넘기기
     $result = deleteBook($conn,$book_id);
 
     if($result){
