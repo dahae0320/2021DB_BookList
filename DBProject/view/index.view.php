@@ -14,34 +14,24 @@
             </div>
             <!-- 책 카드 출력 구간 -->
             <?php
+                $array_for_row = array(); //배열 생성
+                $index = 0; // 인덱스 기록
                 while($row = mysqli_fetch_array($books)){ // DB에서 가지고 온 레코드들을 배열 형태로 변환 후, 한 레코드 씩 $row 변수에 저장하기
+                    array_push($array_for_row, $row); // 배열 만들기
             ?>
             <div class="col-lg-4 mb-4">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <form method="post">
-                            <?php 
-                                echo '<input type="hidden" name="book_id" value='.$row['book_id'].' />';
-                                echo '<input type="hidden" name="book_name" value='.$row['book_name'].' />';
-                                echo '<input type="hidden" name="genre" value='.$row['genre'].' />';
-                                echo '<input type="hidden" name="author" value='.$row['author'].' />';
-                            ?>
-                            <p>
-                                <h5 class="card-title" ><?= $row['book_name'] ?></h5> <!-- 책 제목 -->
-                                <select class="btn btn-mini">
-                                    <option></option>
-                                    <option data-image='redHeart.png'>읽고 싶어요</option>
-                                    <option data-image='blueHeart.png'>읽었어요 </option>
-                                </select>
-                            </p>
+                            <h5 class="card-title" ><?= $row['book_name'] ?></h5> <!-- 책 제목 -->
                             <h6 class="card-subtitle mb-2 text-muted" ><?= $row['author'] ?></h6> <!-- 저자 -->
                             <p class="card-text" ><?= $row['genre'] ?></p> <!-- 장르 -->
                             <p>
-                                <button type="button" class="btn btn-secondary btn-sm" >수정</button> <!-- 수정버튼 -->
-                                <button type="submit" class="btn btn-secondary btn-sm" formaction = "deletebook_execute.php">삭제</button> <!-- 삭제버튼 -->
+                            <button type="button" class="btn btn-secondary btn-sm" value= "'.$index.'" >수정</button>
+                            <?php
+                                echo '<button class="btn btn-secondary btn-sm" value='.$row['book_id'].' onclick="deleteBook(this.value)">삭제</button>' //삭제버튼 
+                            ?>
                                 <label class="card-text">&nbsp&nbsp'<?=$row['user_name']?>'님이 등록</label> <!-- 등록자 -->
                             </p>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -95,6 +85,10 @@
     function setUserValue(){ // 기능 : USER 드랍다운에 지정된 user의 Value를 등록자 input의 Value로 저장
         var userId = document.getElementById('user').value; 
         document.getElementById('user_id').setAttribute( 'value', userId );
+    }
+
+    function deleteBook(value){
+        location.replace("./deletebook_execute.php?value="+value);
     }
 
 </script>
