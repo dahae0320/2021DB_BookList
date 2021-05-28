@@ -21,7 +21,7 @@
                         <h5 class="card-title"><?= $row['book_name'] ?></h5> <!-- 책 제목 -->
                         <h6 class="card-subtitle mb-2 text-muted"><?= $row['author'] ?></h6> <!-- 저자 -->
                         <p class="card-text"><?= $row['genre'] ?></p> <!-- 장르 -->
-                        <p id="book_id" name="book_id" style="display:none;"><?= $row['book_id'] ?></p> <!-- book_id -->
+                        <p id="book_id" name="bookId" style="display:none;"><?= $row['book_id'] ?></p> <!-- book_id -->
                         <p>
                         <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#updateBook" value="<?= $row['book_id'] ?>" onclick="getBookValue(this.value);">수정</button> <!-- 수정버튼 -->
                             <button type="button" class="btn btn-secondary btn-sm">삭제</button> <!-- 삭제버튼 -->
@@ -83,7 +83,7 @@
                         <h5 class="modal-title">책 수정하기</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <!-- 책 등록 form 영역 -->
+                    <!-- 책 수정 form 영역 -->
                     <form action="./updatebook_execute.php" method="post">
                         <div class="modal-body"> <!-- modal body -->                    
                             <div class="mb-3"> <!-- 책 제목 입력 -->
@@ -105,7 +105,7 @@
                             <input type="hidden" id="book_id" name="book_id"/> <!-- 책 등록 번호 input -->
                             </div>
                         <div class="modal-footer">  <!-- modal footer --> 
-                            <!-- 등록 버튼 클릭 시, setUserValue() 함수 호출 -->
+                            <!-- 등록 버튼 클릭 시, setBookValue() 함수 호출 -->
                             <button type="submit" class="btn btn-primary" onclick="setBookValue();"> 등록 </button> 
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> 취소 </button>
                         </div>
@@ -113,17 +113,16 @@
                 </div>
         </div>
     </div>
-    
+
 </main>
 <!-- 자바스크립트 영역 -->
 <script type="application/javascript">
+    var bookId;
     
     function setUserValue(){ // 기능 : USER 드랍다운에 지정된 user의 Value를 등록자 input의 Value로 저장
         var userId = document.getElementById('user').value; 
         document.getElementById('user_id').setAttribute( 'value', userId );
     }
-
-    var bookId;
 
     function getBookValue(value){
         bookId = value;

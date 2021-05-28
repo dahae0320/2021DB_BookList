@@ -15,7 +15,7 @@
     if($result){
         echo '<script> location.replace("bookread.php"); </script>'; 
     }else{
-        echo '수정 실패'.error_log(mysqli_error($conn));
+        echo '수정 실패'.mysqli_error($conn);
     }
 
     mysqli_close($conn); // DB 접속 종료
