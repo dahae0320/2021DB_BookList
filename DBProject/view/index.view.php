@@ -26,7 +26,7 @@
                             <h6 class="card-subtitle mb-2 text-muted" ><?= $row['author'] ?></h6> <!-- 저자 -->
                             <p class="card-text" ><?= $row['genre'] ?></p> <!-- 장르 -->
                             <p>
-                            <button type="button" class="btn btn-secondary btn-sm" value= "'.$index.'" >수정</button>
+                            <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#updateBook" value="<?= $row['book_id'] ?>" onclick="getBookValue(this.value);">수정</button> <!-- 수정버튼 -->
                             <?php
                                 echo '<button class="btn btn-secondary btn-sm" value='.$row['book_id'].' onclick="deleteBook(this.value)">삭제</button>' //삭제버튼 
                             ?>
@@ -79,8 +79,51 @@
                 </div>
         </div>
     </div>
+
+    <!-- 책 수정 모달 영역 -->
+    <div class="modal" id ="updateBook" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">책 수정하기</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!-- 책 수정 form 영역 -->
+                    <form action="./updatebook_execute.php" method="post">
+                        <div class="modal-body"> <!-- modal body -->                    
+                            <div class="mb-3"> <!-- 책 제목 입력 -->
+                                <label for="booknameUp" class="col-form-label">책 제목 :</label> 
+                                <input type="text" class="form-control" id="booknameUp" name="book_name">
+                            </div>
+                            <div class="mb-3"> <!-- 저자 입력 -->
+                                <label for="authorUp" class="col-form-label">저자 :</label>
+                                <input type="text" class="form-control" id="authorUp" name="author">
+                            </div>
+                            <div class="mb-3"> <!-- 장르 입력 -->
+                                <label for="genreUp" class="col-form-label">장르 :</label>
+                                <select class="form-select" id="genreUp" name="genre">
+                                    <option value="소설">소설</option>
+                                    <option value="자기계발서">자기계발서</option>
+                                    <option value="인문">인문</option>
+                                </select>
+                            </div>
+                            <input type="hidden" id="book_id" name="book_id"/> <!-- 책 등록 번호 input -->
+                            </div>
+                        <div class="modal-footer">  <!-- modal footer --> 
+                            <!-- 등록 버튼 클릭 시, setBookValue() 함수 호출 -->
+                            <button type="submit" class="btn btn-primary" onclick="setBookValue();"> 등록 </button> 
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> 취소 </button>
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+
+</main>
 <!-- 자바스크립트 영역 -->
 <script type="application/javascript">
+    var bookId;
+    
     // 기능 : USER 드랍다운에 지정된 user의 Value를 등록자 input의 Value로 저장
     function setUserValue(){ 
         var userId = document.getElementById('user').value; 
@@ -91,6 +134,14 @@
         location.replace("./deletebook_execute.php?value="+value);
     }
 
+    function getBookValue(value){
+        bookId = value;
+        console.log(bookId);
+    }
+    
+    function setBookValue(){ // 기능 : book_id의 value를 수정 부분의 책 등록 번호 input의 Value로 저장
+        document.getElementById('book_id').setAttribute('value', bookId);
+    }
 </script>
 
 <?php
