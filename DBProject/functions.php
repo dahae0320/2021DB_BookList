@@ -17,10 +17,23 @@
         }
     }
 
-    // 메인 페이지 도서 추출 함수
+    // 메인 페이지 도서 추출 함수 ( SELECT )
     function selectMainPageBook($conn){
-        $sql = "SELECT b.`book_name`, b.`genre`, b.`author`, u.`user_name`, u.`user_id`, b.`book_id` FROM `book` b LEFT JOIN `user` u ON b.`user_id` = u.`user_id`";
+        $sql = "SELECT b.`book_id`, b.`book_name`, b.`genre`, b.`author`, u.`user_name`, u.`user_id` 
+                    FROM `book` b 
+                    LEFT JOIN `user` u ON b.`user_id` = u.`user_id`";
         $result = mysqli_query($conn,$sql); 
+        return $result;
+    }
+
+    // 읽은 책 페이지 도서 추출 함수 ( SELECT )
+    function selectAlreadyReadPageBook($conn){
+        $sql = "SELECT b.`book_name`, b.`genre`, b.`author`, u.`user_name`, br.`read_or_not`, b.`book_id`
+                    FROM `book` b
+                    INNER JOIN `book_read` br ON br.`book_id` = b.`book_id` and br.`read_or_not` = 1
+                    LEFT JOIN `user` u ON b.`user_id` = u.`user_id`";
+
+        $result = mysqli_query($conn,$sql);
         return $result;
     }
 
@@ -36,7 +49,7 @@
         return $result;
     }
 
-    // USER 드랍다운에 들어갈 USER 데이터 추출 함수
+    // USER 드랍다운에 들어갈 USER 데이터 추출 함수 ( SELECT )
     function selectUser($conn){
         $sql = "SELECT `user_name`,`user_id` FROM `user`";
         $result = mysqli_query($conn,$sql);
@@ -48,12 +61,20 @@
         return $list;
     }
 
-    // 책 등록 함수
+    // 책 등록 함수 ( INSERT )
     function insertBookInfo($conn,$book_name,$genre,$author,$user_id){
         $sql = "INSERT INTO `book`(`book_name`,`genre`,`author`,`user_id`) VALUES ('$book_name','$genre','$author',$user_id)";
         $result = mysqli_query($conn,$sql);
         return $result;
     }
+    // 책 삭제 함수 ( DELETE )
+    function deleteBook($conn, $book_id){
+       $sql = "DELETE FROM `book` WHERE `book_id` = $book_id";
+       $result = mysqli_query($conn,$sql);
+       return $result;
+    }
+
+    
 
     // 책 수정 함수
     function updateBookInfo($conn,$book_name,$genre,$author,$book_id){

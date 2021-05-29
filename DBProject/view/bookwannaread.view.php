@@ -17,7 +17,6 @@
                     <h5 class="card-title"><?= $row['book_name'] ?></h5> <!-- 책 제목 -->
                     <h6 class="card-subtitle mb-2 text-muted"><?= $row['author'] ?></h6> <!-- 저자 -->
                     <p class="card-text"><?= $row['genre'] ?></p> <!-- 장르 -->
-                    <p class="card-text"><?= $row['wanna'] ?></p> <!-- 읽었음 -->
                     <p id="bookId" name="bookId" ><?= $row['book_id'] ?></p> <!-- book_id -->
                     <p>
                         <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#updateBook" onclick="getBookValue();">수정</button> <!-- 수정버튼 -->
@@ -30,7 +29,7 @@
         <?php
             } // while문 끝
         ?>
-        <!-- 책 수정 모달 영역 -->
+          <!-- 책 수정 모달 영역 -->
         <div class="modal" id ="updateBook" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -67,7 +66,7 @@
                     </form>
                 </div>
         </div>
-    </div>    
+    </div>  
 </main>
 <!-- 자바스크립트 영역 -->
 <script type="application/javascript">
