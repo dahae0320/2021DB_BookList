@@ -7,7 +7,7 @@
 
     // DB 접속 객체 얻기 함수
     function connectDB(){
-        $conn = mysqli_connect("localhost","root","48088943aa","dbproject");
+        $conn = mysqli_connect("127.0.0.1","root","123456789","DBProject");
         
         if(!$conn){
             echo 'DB에 연결하지 못 했습니다.'.mysqli_connect_error();
@@ -39,10 +39,10 @@
 
     // 사용자가 읽고 싶어하는 도서 추출
     function sel_WannaReadBook($conn) {
-        $sql = "SELECT book.book_name, book.genre, book.author, user.user_name, book_status.wanna 
+        $sql = "SELECT book.book_name, book.genre, book.author, user.user_name, book_read.wanna 
         FROM book 
-        INNER JOIN book_status ON book.book_id = book_status.book_id
-        AND book_status.wanna = 1 
+        INNER JOIN book_read ON book.book_id = book_read.book_id
+        AND book_read.wanna = 1 
         LEFT JOIN user ON book.user_id = user.user_id";
 
         $result = mysqli_query($conn, $sql);
