@@ -10,7 +10,7 @@
             
             <!-- 책 카드 출력 구간 -->
             <?php
-                while($row = mysqli_fetch_array($books)){ // DB에서 가지고 온 레코드들을 배열 형태로 변환 후, 한 레코드 씩 $row 변수에 저장하기
+                while($row = mysqli_fetch_array($books)) { // DB에서 가지고 온 레코드들을 배열 형태로 변환 후, 한 레코드 씩 $row 변수에 저장하기
             ?>
             <div class="col-lg-4 mb-4">
                 <div class="card" style="width: 18rem;">
@@ -23,7 +23,7 @@
                         <p id="bookId" name="bookId" style="display:none;"><?= $row['book_id'] ?></p> <!-- book_id -->
                         <p>
                             <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#updateBook" value="<?= $row['book_id'] ?>" onclick="getBookValue(this.value);">수정</button> <!-- 수정버튼 -->
-                            <button type="button" class="btn btn-secondary btn-sm">삭제</button> <!-- 삭제버튼 -->
+                            <button type="button" class="btn btn-secondary btn-sm" onclikc="">삭제</button> <!-- 상태삭제버튼 -->
                             <label class="card-text">&nbsp&nbsp'<?=$row['user_name']?>'님이 등록</label> <!-- 등록자 -->
                         </p>
                     </div>
@@ -87,6 +87,20 @@
     function setBookValue(){ // 기능 : book_id의 value를 수정 부분의 책 등록 번호 input의 Value로 저장
         document.getElementById('book_id').setAttribute('value', bookId);
     }
+
+    // 읽었는지 안읽었는지 하트 선택 시 데이터 전송 (수정 중)    
+    function deleteReadState(state, book_id){ /* WHEN YOU CHANGE AND SELECT FROM THE SELECT FIELD */
+        $.ajax({                        /* THEN THE AJAX CALL */
+            type: "POST",               /* TYPE OF METHOD TO USE TO PASS THE DATA */
+            url: "deleteReadState.php",     /* PAGE WHERE WE WILL PASS THE DATA */
+            data: {state, book_id},     /* THE DATA WE WILL BE PASSING */
+            success: function(result){  /* GET THE TO BE RETURNED DATA */
+                console.log("읽음 상태 : " + state); 
+                console.log("책 등록 넘버 : " + book_id);
+            }
+        });
+    }
+
 </script>
 
 <?php

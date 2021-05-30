@@ -160,15 +160,13 @@
     function fetchReadData(state, book_id){ /* WHEN YOU CHANGE AND SELECT FROM THE SELECT FIELD */
         $.ajax({                        /* THEN THE AJAX CALL */
             type: "POST",               /* TYPE OF METHOD TO USE TO PASS THE DATA */
-            url: "read_or_not.php",     /* PAGE WHERE WE WILL PASS THE DATA */
+            url: "updateReadState.php",     /* PAGE WHERE WE WILL PASS THE DATA */
             data: {state, book_id},     /* THE DATA WE WILL BE PASSING */
             success: function(result){  /* GET THE TO BE RETURNED DATA */
                 console.log("읽음 상태 : "+state); 
                 console.log("책 등록 넘버 : "+book_id);
             }
         });
-        // alert("상태가 변경되었습니다.");
-        // location.reload();
     }
 
 </script>
