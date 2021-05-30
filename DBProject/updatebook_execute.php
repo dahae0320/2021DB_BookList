@@ -13,7 +13,8 @@
 
     //2. SQL 처리 에러 체크
     if($result){
-        echo '<script> location.replace("bookread.php"); </script>'; 
+        echo '<script> alert("수정되었습니다.");
+                        location.replace("index.php"); </script>'; 
     }else{
         echo '수정 실패'.mysqli_error($conn);
     }
