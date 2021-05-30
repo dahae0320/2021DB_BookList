@@ -23,6 +23,14 @@
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                             <h5 class="card-title" ><?= $row['book_name'] ?></h5> <!-- 책 제목 -->
+                            <p id="bookId" name="bookId" style="display:none;" value="<?= $row['book_id'] ?>"></p> <!-- book_id -->
+
+                            <select onchange="fetchReadData(this.value, this.name);" id="read_or_not" style="position: absolute; right: 0; margin-right: 20px;" name="<?= $row['book_id'] ?>">
+                                <option id="nothing">🤍</option>     <!-- 기본 -->
+                                <option id="wanna_read" value="0">❤️</option>     <!-- 읽고 싶은 책(book wanna read) -->
+                                <option id="already_read" value="1">💙</option>     <!-- 이미 읽은 책(book read) -->
+                            </select>
+
                             <h6 class="card-subtitle mb-2 text-muted" ><?= $row['author'] ?></h6> <!-- 저자 -->
                             <p class="card-text" ><?= $row['genre'] ?></p> <!-- 장르 -->
                             <p>
@@ -120,6 +128,11 @@
     </div>
 
 </main>
+
+<!-- jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- 자바스크립트 영역 -->
 <script type="application/javascript">
     var bookId;
@@ -142,6 +155,24 @@
     function setBookValue(){ // 기능 : book_id의 value를 수정 부분의 책 등록 번호 input의 Value로 저장
         document.getElementById('book_id').setAttribute('value', bookId);
     }
+
+    // 읽었는지 안읽었는지 하트 선택 시 데이터 전송
+    // $(document).ready(function(){ /* PREPARE THE SCRIPT */
+    // $("#read_or_not").change(
+        
+    function fetchReadData(state, book_id){ /* WHEN YOU CHANGE AND SELECT FROM THE SELECT FIELD */
+
+        $.ajax({ /* THEN THE AJAX CALL */
+            type: "POST", /* TYPE OF METHOD TO USE TO PASS THE DATA */
+            url: "read_or_not.php", /* PAGE WHERE WE WILL PASS THE DATA */
+            data: {state, book_id}, /* THE DATA WE WILL BE PASSING */
+            success: function(result){ /* GET THE TO BE RETURNED DATA */
+                console.log(state); 
+                console.log(book_id);
+            }
+        });
+    }
+
 </script>
 
 <?php

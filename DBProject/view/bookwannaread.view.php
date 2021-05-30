@@ -15,6 +15,7 @@
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title"><?= $row['book_name'] ?></h5> <!-- 책 제목 -->
+                    <p style="position: absolute; right: 0; margin-right: 20px;">❤️</p>
                     <h6 class="card-subtitle mb-2 text-muted"><?= $row['author'] ?></h6> <!-- 저자 -->
                     <p class="card-text"><?= $row['genre'] ?></p> <!-- 장르 -->
                     <p class="card-text" style="display:none;">읽었음!<?= $row['read_or_not'] ?></p> <!-- 읽었음 -->
