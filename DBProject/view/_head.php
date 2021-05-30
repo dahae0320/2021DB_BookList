@@ -38,7 +38,7 @@
                     <a class="nav-link" href="../DBProject/bookread.php">내가 읽은 책</a>
                     </li>
                     <li class="nav-item" id="nav_page">
-                    <a class="nav-link" href="#">읽고 싶은 책</a>
+                    <a class="nav-link" href="../DBProject/bookwannaread.php">읽고 싶은 책</a>
                     </li>
                 </ul>
                  <!-- User 드랍다운  -->
