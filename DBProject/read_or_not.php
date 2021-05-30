@@ -1,12 +1,10 @@
 <?php
-    function insertBookInfo($state,$book_id){
-        $sql = "INSERT INTO `book_read`(`read_or_not`, `book_id`) VALUES ($state, $book_id)";
-        $result = mysqli_query($conn,$sql);
-        return $result;
-    }
+    require("functions.php");
 
-    if( !empty($_POST['state'] ) {
-        $sql = "INSERT INTO `book_read`(`read_or_not`, `book_id`) VALUES ($state, $book_id)";
-        $result = mysqli_query($conn,$sql);
-    }
+    $state = $_POST['state'];
+    $book_id = $_POST['book_id'];
+    $conn = connectDB(); // DB 연결 객체 획득
+    $read_or_not = choiceBookRead($conn, $state, $book_id);  // DB에서 책 읽었는지 안읽었는지 상태 저장
+    mysqli_close($conn);
+
 ?>

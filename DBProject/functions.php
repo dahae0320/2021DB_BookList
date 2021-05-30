@@ -72,16 +72,18 @@
        $result = mysqli_query($conn,$sql);
        return $result;
     }
-
-    
-
-    // 책 수정 함수
+    // 책 수정 함수 ( UPDATE )
     function updateBookInfo($conn,$book_name,$genre,$author,$book_id){
-        // update
         $sql = "UPDATE book SET book_name='$book_name', genre='$genre', author='$author' WHERE book_id = $book_id";
         $result = mysqli_query($conn,$sql);
         return $result;
     }
 
-    
+    // 읽음 상태 등록 함수
+    function choiceBookRead($conn, $state, $book_id) {
+        $sql = "INSERT INTO `book_read`(`read_or_not`, `book_id`) VALUES ($state, $book_id)";
+        $result = mysqli_query($conn,$sql);
+        return $result;
+    }
+    // 읽음 상태 삭제 함수
 ?>
